@@ -94,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <i class="fas fa-shopping-cart"></i>
             </button>
             <button onclick="window.location.href='informatii.html'">Informații</button>
+            <button id="theme-toggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
         </nav>
     `;
     document.body.prepend(header);

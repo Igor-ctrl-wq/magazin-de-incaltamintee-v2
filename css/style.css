@@ -1,15 +1,52 @@
+:root {
+    --bg-color: #f9f9f9;
+    --text-color: #333;
+    --header-bg: #333;
+    --header-text: white;
+    --button-bg: #555;
+    --button-hover: #777;
+    --produs-bg: #fff;
+    --produs-border: #ddd;
+    --produs-hover-shadow: rgba(0, 0, 0, 0.2);
+    --footer-bg: #f9f9f9;
+    --footer-text: #333;
+    --footer-border: #ddd;
+    --info-bg: #fff;
+    --info-border: #ddd;
+    --notificare-bg: #34c759;
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1e1e1e;
+    --header-text: #e0e0e0;
+    --button-bg: #333;
+    --button-hover: #555;
+    --produs-bg: #1e1e1e;
+    --produs-border: #333;
+    --produs-hover-shadow: rgba(255, 255, 255, 0.1);
+    --footer-bg: #1e1e1e;
+    --footer-text: #e0e0e0;
+    --footer-border: #333;
+    --info-bg: #1e1e1e;
+    --info-border: #333;
+    --notificare-bg: #4caf50;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 header {
-    background-color: #333;
-    color: white;
+    background-color: var(--header-bg);
+    color: var(--header-text);
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -34,8 +71,8 @@ header nav {
 }
 
 header nav button {
-    background-color: #555;
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--header-text);
     border: none;
     padding: 10px 15px;
     cursor: pointer;
@@ -44,7 +81,7 @@ header nav button {
 }
 
 header nav button:hover {
-    background-color: #777;
+    background-color: var(--button-hover);
 }
 
 #produse {
@@ -56,8 +93,8 @@ header nav button:hover {
 }
 
 .produs {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: var(--produs-bg);
+    border: 1px solid var(--produs-border);
     border-radius: 10px;
     padding: 1.5rem;
     text-align: center;
@@ -67,7 +104,7 @@ header nav button:hover {
 
 .produs:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px var(--produs-hover-shadow);
 }
 
 .produs img {
@@ -112,8 +149,8 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--header-bg);
+    color: var(--header-text);
     text-align: center;
     padding: 1rem 0;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -139,11 +176,11 @@ footer {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
     text-align: center;
     padding: 1rem;
-    border: 2px solid #ddd;
+    border: 2px solid var(--footer-border);
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     font-size: 1rem;
@@ -157,12 +194,12 @@ main {
     max-width: 800px;
     margin: 5rem auto;
     padding: 2rem;
-    background-color: #fff;
-    border: 2px solid #ddd;
+    background-color: var(--info-bg);
+    border: 2px solid var(--info-border);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.2rem;
     line-height: 1.8;
 }
@@ -186,11 +223,26 @@ main {
     background-color: #28a745;
 }
 
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--header-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--button-hover);
+}
+
 .notificare {
     position: fixed;
     top: 1rem;
     right: 1rem;
-    background-color: #34c759;
+    background-color: var(--notificare-bg);
     color: white;
     padding: 1rem 1.5rem;
     border-radius: 5px;
