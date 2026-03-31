@@ -1,7 +1,7 @@
 :root {
     --bg-color: #f9f9f9;
     --text-color: #333;
-    --header-bg: #333;
+    --header-bg: #007bff;
     --header-text: white;
     --button-bg: #555;
     --button-hover: #777;
@@ -19,7 +19,7 @@
 [data-theme="dark"] {
     --bg-color: #121212;
     --text-color: #e0e0e0;
-    --header-bg: #1e1e1e;
+    --header-bg: #0056b3;
     --header-text: #e0e0e0;
     --button-bg: #333;
     --button-hover: #555;
