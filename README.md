@@ -17,5 +17,5 @@ Deschide fișierul index.html în browser. Nu este nevoie de instalare.
 - JavaScript
 
 # Creat de
-- Braniște Igor
-- Micu Nicolae
+- Braniște Igor - Igor-ctrl-wq
+- Micu Nicolae - Gigel-11
