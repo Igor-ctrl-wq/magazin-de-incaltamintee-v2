@@ -87,15 +87,17 @@ function adaugaInCos(idProdus) {
 document.addEventListener("DOMContentLoaded", () => {
     const header = document.createElement("header");
     header.innerHTML = `
-        <h1 class="titlu-header">Shoes.md</h1>
-        <nav>
-            <button onclick="window.location.href='contacte.html'">Contacte</button>
-            <button class="buton-cos" onclick="window.location.href='cos.html'">
-                <i class="fas fa-shopping-cart"></i>
-            </button>
-            <button onclick="window.location.href='informatii.html'">Informații</button>
+        <div style="display:flex; align-items:center; gap:10px;">
             <button id="theme-toggle" class="theme-toggle">
                 <i class="fas fa-moon"></i>
+            </button>
+            <h1 class="titlu-header">Shoes.md</h1>
+        </div>
+        <nav>
+            <button onclick="window.location.href='contacte.html'">Contacte</button>
+            <button onclick="window.location.href='informatii.html'">Informații</button>
+            <button class="buton-cos" onclick="window.location.href='cos.html'">
+                <i class="fas fa-shopping-cart"></i>
             </button>
         </nav>
     `;
