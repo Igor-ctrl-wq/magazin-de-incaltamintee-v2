@@ -22,53 +22,10 @@ const produse = [
     { id: 21, nume: "Nike Air Max Plus", pret: 5000, imagine: "img/Nike Air Max Plus.jpg" },
 ];
 
-function afiseazaProduse() {
-    const containerProduse = document.getElementById("produse");
-    produse.forEach((produs) => {
-        const produsElement = document.createElement("div");
-        produsElement.className = "produs";
-        produsElement.innerHTML = `
-            <img src="${produs.imagine}" alt="${produs.nume}">
-            <h3>${produs.nume}</h3>
-            <p>Preț: ${produs.pret} MDL</p>
-            <button onclick="adaugaInCos(${produs.id})">Adaugă în coș</button>
-        `;
-        containerProduse.appendChild(produsElement);
-    });
-}
-
-function adaugaInCos(idProdus) {
-    const produs = produse.find((p) => p.id === idProdus);
-    if (produs) {
-        cos.push(produs);
-        localStorage.setItem("cos", JSON.stringify(cos));
-        actualizeazaCos();
-        alert(`${produs.nume} a fost adăugat în coș!`);
-    }
-}
-
-let cos = [];
-
-function afiseazaProduse() {
-    const containerProduse = document.getElementById("produse");
-    produse.forEach((produs) => {
-        const produsElement = document.createElement("div");
-        produsElement.className = "produs";
-        produsElement.innerHTML = `
-            <img src="${produs.imagine}" alt="${produs.nume}">
-            <h3>${produs.nume}</h3>
-            <p>Preț: ${produs.pret} MDL</p>
-            <button onclick="adaugaInCos(${produs.id})">Adaugă în coș</button>
-        `;
-        containerProduse.appendChild(produsElement);
-    });
-}
-
 function afiseazaNotificare(mesaj) {
     const notificare = document.getElementById("notificare");
     notificare.textContent = mesaj;
     notificare.style.display = "block";
-
     setTimeout(() => {
         notificare.style.display = "none";
     }, 3000);
@@ -84,7 +41,50 @@ function adaugaInCos(idProdus) {
     }
 }
 
+function afiseazaProduse(lista) {
+    const containerProduse = document.getElementById("produse");
+    containerProduse.innerHTML = "";
+
+    if (lista.length === 0) {
+        const mesaj = document.createElement("p");
+        mesaj.className = "no-results";
+        mesaj.textContent = "No footwear found at the selected price or brand.";
+        containerProduse.appendChild(mesaj);
+        return;
+    }
+
+    lista.forEach((produs) => {
+        const produsElement = document.createElement("div");
+        produsElement.className = "produs";
+        produsElement.innerHTML = `
+            <img src="${produs.imagine}" alt="${produs.nume}">
+            <h3>${produs.nume}</h3>
+            <p>Preț: ${produs.pret} MDL</p>
+            <button onclick="adaugaInCos(${produs.id})">Adaugă în coș</button>
+        `;
+        containerProduse.appendChild(produsElement);
+    });
+}
+
+function aplicaFiltre() {
+    const pretFiltru = parseInt(document.getElementById("filter-pret").value);
+    const brandFiltru = document.getElementById("filter-brand").value.toLowerCase();
+
+    let rezultate = produse;
+
+    if (!isNaN(pretFiltru) && pretFiltru > 0) {
+        rezultate = rezultate.filter(p => p.pret === pretFiltru);
+    }
+
+    if (brandFiltru) {
+        rezultate = rezultate.filter(p => p.nume.toLowerCase().startsWith(brandFiltru));
+    }
+
+    afiseazaProduse(rezultate);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+    // Header
     const header = document.createElement("header");
     header.innerHTML = `
         <div style="display:flex; align-items:center; gap:10px;">
@@ -103,36 +103,43 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.body.prepend(header);
 
+    // Footer
     const footer = document.createElement("footer");
     footer.innerHTML = `<p>&copy; 2025 Magazin de Încălțăminte.</p>`;
     document.body.appendChild(footer);
 
-    afiseazaProduse();
-});
+    // Bara de filtrare
+    const brands = [...new Set(produse.map(p => p.nume.split(" ")[0]))].sort();
+    const filterBar = document.createElement("div");
+    filterBar.className = "filter-bar";
+    filterBar.innerHTML = `
+        <input type="number" id="filter-pret" placeholder="Caută după preț (MDL)..." min="0">
+        <select id="filter-brand">
+            <option value="">Toate brandurile</option>
+            ${brands.map(b => `<option value="${b}">${b}</option>`).join("")}
+        </select>
+        <button id="filter-reset">Resetează</button>
+    `;
+    document.querySelector("main").prepend(filterBar);
 
-document.addEventListener("DOMContentLoaded", () => {
-    const butonMeniu = document.getElementById("buton-meniu");
-    if (butonMeniu) {
-        butonMeniu.addEventListener("click", () => {
-            alert("Navighează la meniul principal!");
-        });
-    }
+    document.getElementById("filter-pret").addEventListener("input", aplicaFiltre);
+    document.getElementById("filter-brand").addEventListener("change", aplicaFiltre);
+    document.getElementById("filter-reset").addEventListener("click", () => {
+        document.getElementById("filter-pret").value = "";
+        document.getElementById("filter-brand").value = "";
+        aplicaFiltre();
+    });
 
-    const butonContacte = document.getElementById("buton-contacte");
-    if (butonContacte) {
-        butonContacte.addEventListener("click", () => {
-            alert("Navighează la pagina de contacte!");
-        });
-    }
-});
+    // Search bar existent
+    document.getElementById("search-button").addEventListener("click", () => {
+        const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+        const produsGasit = produse.find((produs) => produs.nume.toLowerCase().includes(searchTerm));
+        if (produsGasit) {
+            alert(`Produs găsit: ${produsGasit.nume} - Preț: ${produsGasit.pret} MDL`);
+        } else {
+            alert("Produsul nu a fost găsit.");
+        }
+    });
 
-document.getElementById("search-button").addEventListener("click", () => {
-    const searchTerm = document.getElementById("search-bar").value.toLowerCase();
-    const produsGasit = produse.find((produs) => produs.nume.toLowerCase().includes(searchTerm));
-
-    if (produsGasit) {
-        alert(`Produs găsit: ${produsGasit.nume} - Preț: ${produsGasit.pret} MDL`);
-    } else {
-        alert("Produsul nu a fost găsit.");
-    }
+    afiseazaProduse(produse);
 });

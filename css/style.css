@@ -158,7 +158,7 @@ footer {
 }
 
 .titlu-header {
-    background-image: url('Magazin de încălțăminte/img/fundal-titlu.jpg');
+    background-image: url('Magazin de ĂŽncÄlČÄminte/img/fundal-titlu.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -251,4 +251,52 @@ main {
     font-weight: bold;
     display: none;
     z-index: 1000;
+}
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 2rem;
+    background-color: var(--produs-bg);
+    border-bottom: 2px solid var(--produs-border);
+    flex-wrap: wrap;
+}
+
+.filter-bar input[type="number"],
+.filter-bar select {
+    padding: 8px 12px;
+    border: 1px solid var(--produs-border);
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    outline: none;
+    min-width: 200px;
+}
+
+.filter-bar input[type="number"]:focus,
+.filter-bar select:focus {
+    border-color: #34c759;
+}
+
+.filter-bar button {
+    padding: 8px 16px;
+    background-color: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.filter-bar button:hover {
+    background-color: var(--button-hover);
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    padding: 3rem;
 }
