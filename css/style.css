@@ -108,8 +108,10 @@ header nav button:hover {
 }
 
 .produs img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
     border-radius: 10px;
     margin-bottom: 1rem;
 }
@@ -158,7 +160,7 @@ footer {
 }
 
 .titlu-header {
-    background-image: url('Magazin de ĂŽncÄlČÄminte/img/fundal-titlu.jpg');
+    background-image: url('Magazin de ÄĹ˝ncĂÂlÄÂĂÂminte/img/fundal-titlu.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
