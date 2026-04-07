@@ -107,14 +107,7 @@ header nav button:hover {
     box-shadow: 0 8px 16px var(--produs-hover-shadow);
 }
 
-.produs img {
-    width: 100%;
-    height: 220px;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-}
+
 
 .produs h3 {
     margin: 0.5rem 0;
@@ -254,6 +247,126 @@ main {
     display: none;
     z-index: 1000;
 }
+
+
+
+
+
+
+
+
+
+
+
+/* Produse in cos - dimensiune normala */
+#lista-cos li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-bottom: 1px solid var(--produs-border);
+    font-size: 1rem;
+}
+
+#lista-cos li img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+#lista-cos li button {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    margin-left: auto;
+}
+
+#lista-cos li button:hover {
+    background-color: #c62828;
+}
+
+/* Recomandari */
+#recomandari-section {
+    padding: 1.5rem 2rem 0.5rem 2rem;
+    background-color: var(--produs-bg);
+    border-bottom: 2px solid var(--produs-border);
+}
+
+#recomandari-section h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+#recomandari-lista {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.produs-rec {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--produs-border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    min-width: 220px;
+    max-width: 280px;
+}
+
+.produs-rec img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+.produs-rec-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.produs-rec-info strong {
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.produs-rec-info span {
+    font-size: 0.85rem;
+    color: #34c759;
+    font-weight: bold;
+}
+
+.produs-rec-info button {
+    background-color: #34c759;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.produs-rec-info button:hover {
+    background-color: #28a745;
+}
+
+#recomandari-gol {
+    color: #888;
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
+}
+
+/* Filter bar cu search inclus */
 .filter-bar {
     display: flex;
     gap: 10px;
@@ -264,7 +377,7 @@ main {
     flex-wrap: wrap;
 }
 
-.filter-bar input[type="number"],
+.filter-bar input,
 .filter-bar select {
     padding: 8px 12px;
     border: 1px solid var(--produs-border);
@@ -273,10 +386,10 @@ main {
     background-color: var(--bg-color);
     color: var(--text-color);
     outline: none;
-    min-width: 200px;
+    min-width: 180px;
 }
 
-.filter-bar input[type="number"]:focus,
+.filter-bar input:focus,
 .filter-bar select:focus {
     border-color: #34c759;
 }
@@ -302,73 +415,13 @@ main {
     color: #888;
     padding: 3rem;
 }
-#lista-cos {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    max-width: 700px;
-    margin: 2rem auto;
-}
 
-.cos-item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    background-color: var(--produs-bg);
-    border: 1px solid var(--produs-border);
-    border-radius: 10px;
-    padding: 1rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.cos-item img {
-    width: 100px;
-    height: 100px;
+/* Imagini produse uniforme */
+.produs img {
+    width: 100%;
+    height: 220px;
     object-fit: contain;
-    border-radius: 8px;
-    background-color: var(--bg-color);
-}
-
-.cos-item-info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    gap: 0.4rem;
-}
-
-.cos-item-nume {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: var(--text-color);
-}
-
-.cos-item-pret {
-    font-size: 1rem;
-    color: #34c759;
-    font-weight: bold;
-}
-
-.cos-item button {
-    background-color: #e53935;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.2s;
-}
-
-.cos-item button:hover {
-    background-color: #c62828;
-}
-
-#total {
-    text-align: center;
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--text-color);
-    margin: 1rem;
+    object-position: center;
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }
