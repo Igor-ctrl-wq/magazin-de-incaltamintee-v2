@@ -26,9 +26,7 @@ function afiseazaNotificare(mesaj) {
     const notificare = document.getElementById("notificare");
     notificare.textContent = mesaj;
     notificare.style.display = "block";
-    setTimeout(() => {
-        notificare.style.display = "none";
-    }, 3000);
+    setTimeout(() => { notificare.style.display = "none"; }, 3000);
 }
 
 function adaugaInCos(idProdus) {
@@ -44,7 +42,6 @@ function adaugaInCos(idProdus) {
 function afiseazaProduse(lista) {
     const containerProduse = document.getElementById("produse");
     containerProduse.innerHTML = "";
-
     if (lista.length === 0) {
         const mesaj = document.createElement("p");
         mesaj.className = "no-results";
@@ -52,7 +49,6 @@ function afiseazaProduse(lista) {
         containerProduse.appendChild(mesaj);
         return;
     }
-
     lista.forEach((produs) => {
         const produsElement = document.createElement("div");
         produsElement.className = "produs";
@@ -69,18 +65,53 @@ function afiseazaProduse(lista) {
 function aplicaFiltre() {
     const pretFiltru = parseInt(document.getElementById("filter-pret").value);
     const brandFiltru = document.getElementById("filter-brand").value.toLowerCase();
+    const searchTerm = document.getElementById("search-bar").value.trim().toLowerCase();
 
     let rezultate = produse;
-
     if (!isNaN(pretFiltru) && pretFiltru > 0) {
         rezultate = rezultate.filter(p => p.pret === pretFiltru);
     }
-
     if (brandFiltru) {
         rezultate = rezultate.filter(p => p.nume.toLowerCase().startsWith(brandFiltru));
     }
-
+    if (searchTerm) {
+        rezultate = rezultate.filter(p => p.nume.toLowerCase().includes(searchTerm));
+    }
     afiseazaProduse(rezultate);
+}
+
+function actualizeazaRecomandari() {
+    const cautari = JSON.parse(localStorage.getItem("cautari")) || [];
+    const lista = document.getElementById("recomandari-lista");
+    const gol = document.getElementById("recomandari-gol");
+    if (!lista) return;
+    lista.innerHTML = "";
+    if (cautari.length === 0) {
+        gol.style.display = "block";
+        return;
+    }
+    gol.style.display = "none";
+    const recomandate = produse.filter(p =>
+        cautari.some(c => p.nume.toLowerCase().includes(c))
+    );
+    if (recomandate.length === 0) {
+        gol.style.display = "block";
+        gol.textContent = "No recommendations found based on your searches.";
+        return;
+    }
+    recomandate.forEach(produs => {
+        const card = document.createElement("div");
+        card.className = "produs-rec";
+        card.innerHTML = `
+            <img src="${produs.imagine}" alt="${produs.nume}">
+            <div class="produs-rec-info">
+                <strong>${produs.nume}</strong>
+                <span>${produs.pret} MDL</span>
+                <button onclick="adaugaInCos(${produs.id})">Adaugă în coș</button>
+            </div>
+        `;
+        lista.appendChild(card);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -108,11 +139,12 @@ document.addEventListener("DOMContentLoaded", () => {
     footer.innerHTML = `<p>&copy; 2025 Magazin de Încălțăminte.</p>`;
     document.body.appendChild(footer);
 
-    // Bara de filtrare
+    // Bara de filtrare (cu search bar inclus)
     const brands = [...new Set(produse.map(p => p.nume.split(" ")[0]))].sort();
     const filterBar = document.createElement("div");
     filterBar.className = "filter-bar";
     filterBar.innerHTML = `
+        <input type="text" id="search-bar" placeholder="Caută încălțăminte...">
         <input type="number" id="filter-pret" placeholder="Caută după preț (MDL)..." min="0">
         <select id="filter-brand">
             <option value="">Toate brandurile</option>
@@ -122,24 +154,38 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     document.querySelector("main").prepend(filterBar);
 
+    document.getElementById("search-bar").addEventListener("input", () => {
+        const searchTerm = document.getElementById("search-bar").value.trim().toLowerCase();
+        if (searchTerm.length > 1) {
+            const cautari = JSON.parse(localStorage.getItem("cautari")) || [];
+            if (!cautari.includes(searchTerm)) {
+                cautari.push(searchTerm);
+                if (cautari.length > 10) cautari.shift();
+                localStorage.setItem("cautari", JSON.stringify(cautari));
+            }
+            actualizeazaRecomandari();
+        }
+        aplicaFiltre();
+    });
     document.getElementById("filter-pret").addEventListener("input", aplicaFiltre);
     document.getElementById("filter-brand").addEventListener("change", aplicaFiltre);
     document.getElementById("filter-reset").addEventListener("click", () => {
+        document.getElementById("search-bar").value = "";
         document.getElementById("filter-pret").value = "";
         document.getElementById("filter-brand").value = "";
         aplicaFiltre();
     });
 
-    // Search bar existent
-    document.getElementById("search-button").addEventListener("click", () => {
-        const searchTerm = document.getElementById("search-bar").value.toLowerCase();
-        const produsGasit = produse.find((produs) => produs.nume.toLowerCase().includes(searchTerm));
-        if (produsGasit) {
-            alert(`Produs găsit: ${produsGasit.nume} - Preț: ${produsGasit.pret} MDL`);
-        } else {
-            alert("Produsul nu a fost găsit.");
-        }
-    });
+    // Secțiunea de recomandări
+    const sectiuneRecomandari = document.createElement("div");
+    sectiuneRecomandari.id = "recomandari-section";
+    sectiuneRecomandari.innerHTML = `
+        <h2>⭐ Recomandate pentru tine</h2>
+        <div id="recomandari-lista"></div>
+        <p id="recomandari-gol">Caută un produs ca să primești recomandări personalizate!</p>
+    `;
+    document.querySelector("main").insertBefore(sectiuneRecomandari, document.getElementById("produse"));
 
+    actualizeazaRecomandari();
     afiseazaProduse(produse);
 });
