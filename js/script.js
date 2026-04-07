@@ -117,20 +117,31 @@ function actualizeazaRecomandari() {
 document.addEventListener("DOMContentLoaded", () => {
     // Header
     const header = document.createElement("header");
+    header.className = "header-dark";
+    const marqueeItems = produse.map(p => `👟 ${p.nume} — ${p.pret} MDL`).join(" &nbsp;•&nbsp; ");
     header.innerHTML = `
-        <div style="display:flex; align-items:center; gap:10px;">
-            <button id="theme-toggle" class="theme-toggle">
-                <i class="fas fa-moon"></i>
-            </button>
-            <h1 class="titlu-header">Shoes.md</h1>
+        <div class="header-dark-top">
+            <nav class="header-dark-nav">
+                <button onclick="window.location.href='contacte.html'">Contacte</button>
+                <button onclick="window.location.href='informatii.html'">Informații</button>
+            </nav>
+            <div class="header-dark-center">
+                <span class="header-dark-dot"></span>
+                <h1 class="header-dark-title">SHOES.MD</h1>
+                <span class="header-dark-dot"></span>
+            </div>
+            <nav class="header-dark-nav">
+                <button class="buton-cos" onclick="window.location.href='cos.html'">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </nav>
         </div>
-        <nav>
-            <button onclick="window.location.href='contacte.html'">Contacte</button>
-            <button onclick="window.location.href='informatii.html'">Informații</button>
-            <button class="buton-cos" onclick="window.location.href='cos.html'">
-                <i class="fas fa-shopping-cart"></i>
-            </button>
-        </nav>
+        <div class="header-dark-marquee">
+            <div class="header-dark-marquee-inner">${marqueeItems} &nbsp;•&nbsp; ${marqueeItems}</div>
+        </div>
     `;
     document.body.prepend(header);
 
