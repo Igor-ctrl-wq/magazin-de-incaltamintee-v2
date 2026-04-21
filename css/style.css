@@ -153,7 +153,7 @@ footer {
 }
 
 .titlu-header {
-    background-image: url('Magazin de ĂÂÄšËncÄÂĂÂlĂÂĂÂÄÂĂÂminte/img/fundal-titlu.jpg');
+    background-image: url('Magazin de ÄÂĂÂĂĹĄĂÂncĂÂĂÂÄÂĂÂlÄÂĂÂÄÂĂÂĂÂĂÂÄÂĂÂminte/img/fundal-titlu.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -546,3 +546,73 @@ main {
     background: rgba(52, 199, 89, 0.28);
 }
 /* ============================= */
+/* ===== DARK PAGE (informatii & contacte) ===== */
+.dark-page {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.dark-card {
+    background: #0f0f0f;
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    padding: 2.5rem;
+    max-width: 700px;
+    width: 100%;
+}
+
+.dark-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+}
+
+.dark-line {
+    width: 40px;
+    height: 3px;
+    background: #34c759;
+    margin-bottom: 1.5rem;
+    border-radius: 2px;
+}
+
+.dark-text {
+    font-size: 1rem;
+    color: #aaaaaa;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.dark-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.dark-box {
+    flex: 1;
+    min-width: 140px;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: #161616;
+}
+
+.dark-box-label {
+    font-size: 11px;
+    color: #34c759;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.dark-box-val {
+    font-size: 14px;
+    color: #ffffff;
+}
+/* ============================================= */
