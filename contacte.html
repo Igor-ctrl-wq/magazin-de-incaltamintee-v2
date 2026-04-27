@@ -1,41 +1,442 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html lang="ro"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacte</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== PAGINA CONTACTE - DESIGN NOU ===== */
+        .con-page {
+            max-width: 760px;
+            margin: 2rem auto;
+            padding: 0 1.5rem 5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        /* Hero */
+        .con-hero {
+            text-align: center;
+            padding: 2.5rem 1.5rem 2rem;
+            border: 1px solid var(--produs-border);
+            border-radius: 14px;
+            background-color: var(--produs-bg);
+        }
+
+        .con-badge {
+            display: inline-block;
+            background-color: #d4f5dc;
+            color: #1a6b2e;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        [data-theme="dark"] .con-badge {
+            background-color: rgba(52, 199, 89, 0.15);
+            color: #34c759;
+        }
+
+        .con-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: var(--text-color);
+            letter-spacing: 4px;
+            margin: 0 0 0.5rem;
+        }
+
+        .con-accent {
+            display: inline-block;
+            width: 36px;
+            height: 3px;
+            background: #34c759;
+            border-radius: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .con-subtitle {
+            font-size: 1rem;
+            color: #888;
+            line-height: 1.8;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Carduri contact */
+        .con-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .con-card {
+            background-color: var(--produs-bg);
+            border: 1px solid var(--produs-border);
+            border-radius: 12px;
+            padding: 1.4rem 1rem;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: default;
+        }
+
+        .con-card:hover {
+            transform: translateY(-3px);
+            border-color: #34c759;
+        }
+
+        .con-card-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background-color: #d4f5dc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #1a6b2e;
+            margin: 0 auto 12px;
+        }
+
+        [data-theme="dark"] .con-card-icon {
+            background-color: rgba(52, 199, 89, 0.15);
+            color: #34c759;
+        }
+
+        .con-card-label {
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .con-card-val {
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--text-color);
+            word-break: break-all;
+        }
+
+        /* Ore de lucru */
+        .con-hours {
+            background-color: var(--produs-bg);
+            border: 1px solid var(--produs-border);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+        }
+
+        .con-section-title {
+            font-size: 12px;
+            color: #888;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin: 0 0 14px;
+            text-transform: uppercase;
+        }
+
+        .con-hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 24px;
+        }
+
+        .con-hour-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 0;
+            border-bottom: 1px solid var(--produs-border);
+            font-size: 13px;
+        }
+
+        .con-hour-row:last-child {
+            border-bottom: none;
+        }
+
+        .con-hour-day {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .con-hour-time {
+            color: #34c759;
+            font-weight: bold;
+        }
+
+        .con-hour-closed {
+            color: #e53935;
+            font-weight: bold;
+        }
+
+        /* Formular contact */
+        .con-form-section {
+            background-color: var(--produs-bg);
+            border: 1px solid var(--produs-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .con-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .con-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .con-input {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1px solid var(--produs-border);
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .con-input:focus {
+            border-color: #34c759;
+        }
+
+        .con-input::placeholder {
+            color: #aaa;
+        }
+
+        textarea.con-input {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .con-submit {
+            background-color: #34c759;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            align-self: flex-start;
+        }
+
+        .con-submit:hover {
+            background-color: #28a745;
+            transform: scale(1.04);
+        }
+
+        /* Social media */
+        .con-social {
+            background-color: var(--produs-bg);
+            border: 1px solid var(--produs-border);
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .con-social-text {
+            font-size: 13px;
+            color: #888;
+            margin: 0;
+        }
+
+        .con-social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .con-social-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--produs-border);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .con-social-btn:hover {
+            border-color: #34c759;
+            background-color: rgba(52, 199, 89, 0.08);
+        }
+
+        /* Toast notificare */
+        #con-toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background-color: #34c759;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 9999;
+            white-space: nowrap;
+        }
+
+        #con-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .con-cards { grid-template-columns: 1fr; }
+            .con-hours-grid { grid-template-columns: 1fr; }
+            .con-form-row { grid-template-columns: 1fr; }
+            .con-social { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
 </head>
 <body>
+    <div id="con-toast">✓ Mesaj trimis! Te vom contacta în curând.</div>
+
     <main>
-        <section class="dark-page">
-            <div class="dark-card">
-                <h1 class="dark-title">CONTACTE</h1>
-                <div class="dark-line"></div>
-                <p class="dark-text">
-                    Suntem aici pentru tine! Contactează-ne prin oricare din metodele de mai jos și îți vom răspunde cât mai repede posibil.
-                </p>
-                <div class="dark-row">
-                    <div class="dark-box">
-                        <div class="dark-box-label">EMAIL</div>
-                        <div class="dark-box-val">branisteigor@shoes.md</div>
+        <section class="con-page">
+
+            <!-- Hero -->
+            <div class="con-hero">
+                <span class="con-badge">SUNTEM AICI PENTRU TINE</span>
+                <h1 class="con-title">CONTACTE</h1>
+                <div class="con-accent"></div>
+                <p class="con-subtitle">Ai o întrebare, contacteazăne și îți răspundem rapid.</p>
+            </div>
+
+            <!-- Carduri contact -->
+            <div class="con-cards">
+                <div class="con-card">
+                    <div class="con-card-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="con-card-label">Email</div>
+                    <div class="con-card-val">magazinonline@shoes.md</div>
+                </div>
+                <div class="con-card">
+                    <div class="con-card-icon"><i class="fas fa-phone"></i></div>
+                    <div class="con-card-label">Telefon</div>
+                    <div class="con-card-val">+373 065 792 369</div>
+                </div>
+                <div class="con-card">
+                    <div class="con-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="con-card-label">Adresă</div>
+                    <div class="con-card-val">Str. Salcâmilor 20/4, Chișinău</div>
+                </div>
+            </div>
+
+            <!-- Ore de lucru -->
+            <div class="con-hours">
+                <p class="con-section-title">Ore de lucru</p>
+                <div class="con-hours-grid">
+                    <div>
+                        <div class="con-hour-row">
+                            <span class="con-hour-day">Luni</span>
+                            <span class="con-hour-time">09:00 – 18:00</span>
+                        </div>
+                        <div class="con-hour-row">
+                            <span class="con-hour-day">Marți</span>
+                            <span class="con-hour-time">09:00 – 18:00</span>
+                        </div>
+                        <div class="con-hour-row">
+                            <span class="con-hour-day">Miercuri</span>
+                            <span class="con-hour-time">09:00 – 18:00</span>
+                        </div>
+                        <div class="con-hour-row">
+                            <span class="con-hour-day">Joi</span>
+                            <span class="con-hour-time">09:00 – 18:00</span>
+                        </div>
                     </div>
-                    <div class="dark-box">
-                        <div class="dark-box-label">TELEFON</div>
-                        <div class="dark-box-val">+373 62 151 628</div>
-                    </div>
-                    <div class="dark-box">
-                        <div class="dark-box-label">ADRESĂ</div>
-                        <div class="dark-box-val">Str. Salcâmilor 20/4</div>
+                    <div>
+                        <div class="con-hour-row">
+                            <span class="con-hour-day">Vineri</span>
+                            <span class="con-hour-time">09:00 – 17:00</span>
+                        </div>
+                        <div class="con-hour-row">
+                            <span class="con-hour-day">Sâmbătă</span>
+                            <span class="con-hour-time">10:00 – 15:00</span>
+                        </div>
+                        <div class="con-hour-row">
+                            <span class="con-hour-day">Duminică</span>
+                            <span class="con-hour-closed">Închis</span>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Formular contact -->
+            <div class="con-form-section">
+                <p class="con-section-title">Trimite-ne un mesaj</p>
+                <div class="con-form" id="con-form">
+                    <div class="con-form-row">
+                        <input class="con-input" type="text" id="con-nume" placeholder="Numele tău" required="">
+                        <input class="con-input" type="email" id="con-email" placeholder="Adresa de email" required="">
+                    </div>
+                    <input class="con-input" type="text" id="con-subiect" placeholder="Subiect (ex: Comandă, Retur, Informații)">
+                    <textarea class="con-input" id="con-mesaj" placeholder="Scrie mesajul tău aici..."></textarea>
+                    <button class="con-submit" onclick="trimiteFormular()">
+                        <i class="fas fa-paper-plane"></i> Trimite mesajul
+                    </button>
+                </div>
+            </div>
+
+
+
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Magazin de Încălțăminte</p>
+        <p>© 2025 Magazin de Încălțăminte</p>
     </footer>
+
     <script src="js/theme.js"></script>
-</body>
-</html>
+    <script>
+        function trimiteFormular() {
+            const nume = document.getElementById("con-nume").value.trim();
+            const email = document.getElementById("con-email").value.trim();
+            const mesaj = document.getElementById("con-mesaj").value.trim();
+
+            if (!nume || !email || !mesaj) {
+                alert("Te rugăm să completezi cel puțin numele, emailul și mesajul.");
+                return;
+            }
+
+            // Simulare trimitere
+            const toast = document.getElementById("con-toast");
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3500);
+
+            // Reset formular
+            document.getElementById("con-nume").value = "";
+            document.getElementById("con-email").value = "";
+            document.getElementById("con-subiect").value = "";
+            document.getElementById("con-mesaj").value = "";
+        }
+    </script>
+
+
+</body></html>
