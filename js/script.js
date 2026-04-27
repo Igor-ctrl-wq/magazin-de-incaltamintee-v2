@@ -55,7 +55,7 @@ function afiseazaProduse(lista) {
         produsElement.innerHTML = `
             <img src="${produs.imagine}" alt="${produs.nume}">
             <h3>${produs.nume}</h3>
-            <p>Preț: ${produs.pret} MDL</p>
+            <p class="pret" data-pret="${produs.pret}">Preț: ${produs.pret} MDL</p>
             <button onclick="adaugaInCos(${produs.id})">Adaugă în coș</button>
         `;
         containerProduse.appendChild(produsElement);
@@ -106,7 +106,7 @@ function actualizeazaRecomandari() {
             <img src="${produs.imagine}" alt="${produs.nume}">
             <div class="produs-rec-info">
                 <strong>${produs.nume}</strong>
-                <span>${produs.pret} MDL</span>
+                <span class="pret" data-pret="${produs.pret}">${produs.pret} MDL</span>
                 <button onclick="adaugaInCos(${produs.id})">Adaugă în coș</button>
             </div>
         `;
@@ -170,4 +170,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
     actualizeazaRecomandari();
     afiseazaProduse(produse);
+
+    // Aplică valuta salvată la încărcarea paginii
+    const valutaSalvata = localStorage.getItem("valuta");
+    if (valutaSalvata && valutaSalvata !== "MDL") {
+        document.getElementById("valuta-la").value = valutaSalvata;
+        aplicaConversie(valutaSalvata);
+    }
+
+    // ===== CONVERTOR VALUTAR SIMPLU =====
+    const VALUTE = ["MDL", "USD", "EUR", "RON", "GBP", "UAH", "RUB", "TRY", "PLN", "CHF"];
+
+    const sectiuneValuta = document.createElement("div");
+    sectiuneValuta.id = "convertor-valuta";
+    sectiuneValuta.innerHTML = `
+        <div class="valuta-header">
+            <span class="valuta-title"><i class="fas fa-exchange-alt"></i>Valuta paginii</span>
+        </div>
+        <div class="valuta-body">
+            <div class="valuta-row">
+                <div class="valuta-group">
+                    <label>Alege valuta</label>
+                    <select id="valuta-la">
+                        ${VALUTE.map(v => `<option value="${v}" ${v === "MDL" ? "selected" : ""}>${v}</option>`).join("")}
+                    </select>
+                </div>
+                <button class="valuta-btn" id="convert-page-btn">
+                    <i class="fas fa-globe"></i> Aplică
+                </button>
+            </div>
+        </div>
+    `;
+
+    // Inserează convertorul între recomandări și produse
+    const sectiuneProduse = document.getElementById("produse");
+    document.querySelector("main").insertBefore(sectiuneValuta, sectiuneProduse);
+
+    function formatSuma(n) {
+        return n.toLocaleString("ro-RO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    async function aplicaConversie(valuta) {
+        if (valuta === "MDL") {
+            document.querySelectorAll(".pret").forEach(el => {
+                const pretOriginal = parseFloat(el.dataset.pret);
+                el.textContent = el.tagName === "P" ? `Preț: ${pretOriginal} MDL` : `${pretOriginal} MDL`;
+            });
+            return;
+        }
+
+        try {
+            const resp = await fetch(`https://api.exchangerate-api.com/v4/latest/MDL`);
+            if (!resp.ok) throw new Error();
+            const data = await resp.json();
+            const curs = data.rates[valuta];
+            if (!curs) throw new Error();
+
+            document.querySelectorAll(".pret").forEach(el => {
+                const pretOriginal = parseFloat(el.dataset.pret);
+                const pretConvertit = pretOriginal * curs;
+                el.textContent = el.tagName === "P" ? `Preț: ${formatSuma(pretConvertit)} ${valuta}` : `${formatSuma(pretConvertit)} ${valuta}`;
+            });
+        } catch {
+            // Eroare, rămâne la MDL
+        }
+    }
+
+    async function convertesteToataPagina() {
+        const la = document.getElementById("valuta-la").value;
+        const btn = document.getElementById("convert-page-btn");
+
+        if (la === "MDL") {
+            localStorage.removeItem("valuta");
+            await aplicaConversie("MDL");
+            afiseazaNotificare("Prețurile au fost resetate la MDL!");
+            return;
+        }
+
+        localStorage.setItem("valuta", la);
+
+        btn.disabled = true;
+        btn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> ...`;
+
+        try {
+            await aplicaConversie(la);
+            afiseazaNotificare(`Prețurile au fost convertite în ${la}!`);
+        } catch {
+            afiseazaNotificare("Eroare: nu s-a putut prelua cursul pentru conversia paginii.");
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = `<i class="fas fa-globe"></i> Aplică`;
+    }
+
+    document.getElementById("convert-page-btn").addEventListener("click", convertesteToataPagina);
+
+    // ===== SFARSIT CONVERTOR VALUTAR =====
 });
