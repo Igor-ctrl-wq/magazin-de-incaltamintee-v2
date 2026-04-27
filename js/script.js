@@ -171,13 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
     actualizeazaRecomandari();
     afiseazaProduse(produse);
 
-    // Aplică valuta salvată la încărcarea paginii
-    const valutaSalvata = localStorage.getItem("valuta");
-    if (valutaSalvata && valutaSalvata !== "MDL") {
-        document.getElementById("valuta-la").value = valutaSalvata;
-        aplicaConversie(valutaSalvata);
-    }
-
     // ===== CONVERTOR VALUTAR SIMPLU =====
     const VALUTE = ["MDL", "USD", "EUR", "RON", "GBP", "UAH", "RUB", "TRY", "PLN", "CHF"];
 
@@ -205,6 +198,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Inserează convertorul între recomandări și produse
     const sectiuneProduse = document.getElementById("produse");
     document.querySelector("main").insertBefore(sectiuneValuta, sectiuneProduse);
+
+    // Aplică valuta salvată la încărcarea paginii
+    const valutaSalvata = localStorage.getItem("valuta");
+    if (valutaSalvata && valutaSalvata !== "MDL") {
+        document.getElementById("valuta-la").value = valutaSalvata;
+        aplicaConversie(valutaSalvata);
+    }
 
     function formatSuma(n) {
         return n.toLocaleString("ro-RO", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
