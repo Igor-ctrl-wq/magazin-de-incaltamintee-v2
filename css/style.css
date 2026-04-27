@@ -825,3 +825,200 @@ main {
     .inf-features { grid-template-columns: 1fr; }
 }
 /* ========================================= */
+/* ===== CONVERTOR VALUTAR ===== */
+#convertor-valuta {
+    margin: 0 2rem 1.5rem 2rem;
+    background-color: var(--produs-bg);
+    border: 1px solid var(--produs-border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.valuta-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px 12px;
+    border-bottom: 1px solid var(--produs-border);
+}
+
+.valuta-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.valuta-title i {
+    color: #34c759;
+}
+
+.valuta-badge {
+    font-size: 12px;
+    font-weight: bold;
+    color: #888;
+}
+
+.valuta-body {
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.valuta-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.valuta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-width: 120px;
+}
+
+.valuta-group label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.valuta-group input,
+.valuta-group select {
+    padding: 9px 12px;
+    border: 1px solid var(--produs-border);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.valuta-group input:focus,
+.valuta-group select:focus {
+    border-color: #34c759;
+}
+
+.valuta-swap {
+    background: rgba(52, 199, 89, 0.12);
+    color: #34c759;
+    border: 1px solid rgba(52, 199, 89, 0.3);
+    padding: 9px 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-end;
+    margin-bottom: 0;
+}
+
+.valuta-swap:hover {
+    background: rgba(52, 199, 89, 0.25);
+    transform: scale(1.08);
+}
+
+.valuta-btn {
+    background-color: #34c759;
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.2s;
+    align-self: flex-end;
+    white-space: nowrap;
+}
+
+.valuta-btn:hover {
+    background-color: #28a745;
+    transform: scale(1.04);
+}
+
+.valuta-btn:disabled {
+    background-color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.valuta-rezultat {
+    background-color: var(--bg-color);
+    border: 1px solid var(--produs-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 15px;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.valuta-egala {
+    color: #888;
+    margin: 0 8px;
+    font-size: 18px;
+}
+
+.valuta-suma-la {
+    color: #34c759;
+    font-size: 1.1em;
+}
+
+.valuta-rezultat-curs {
+    font-size: 12px;
+    color: #888;
+    margin-top: 2px;
+}
+
+.valuta-cursuri-rapide {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.valuta-cursuri-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+#valuta-cursuri-container {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.valuta-pill {
+    background-color: var(--bg-color);
+    border: 1px solid var(--produs-border);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--text-color);
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    #convertor-valuta { margin: 0 1rem 1rem 1rem; }
+    .valuta-row { flex-direction: column; }
+    .valuta-swap { align-self: center; }
+    .valuta-btn { width: 100%; text-align: center; }
+}
+/* ============================= */
