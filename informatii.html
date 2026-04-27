@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
+<html lang="ro"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informații</title>
@@ -9,39 +7,114 @@
 </head>
 <body>
     <main>
-        <section class="dark-page">
-            <div class="dark-card">
-                <h1 class="dark-title">SHOES.MD</h1>
-                <div class="dark-line"></div>
-                <p class="dark-text">
-                    Magazinul nostru oferă o gamă variată de încălțăminte pentru toată familia — femei, bărbați și copii. Avem pantofi sport, casual, eleganți, ghete, sandale și multe altele, la prețuri accesibile.
-                </p>
-                <p class="dark-text">
-                    Punem accent pe calitate și confort, pentru ca tu să te simți bine în fiecare pereche cumpărată. Suntem mereu atenți la ce își doresc clienții noștri și aducem mereu produse noi și moderne.
-                </p>
-                <p class="dark-text">
-                    Te așteptăm cu drag în magazinul online, unde ai parte de oferte speciale și livrare rapidă!
-                </p>
-                <div class="dark-row">
-                    <div class="dark-box">
-                        <div class="dark-box-label">PRODUSE</div>
-                        <div class="dark-box-val">21+ modele</div>
+        <section class="inf-page">
+
+            <!-- Hero -->
+            <div class="inf-hero">
+                <span class="inf-badge">MAGAZIN ONLINE</span>
+                <h1 class="inf-title">SHOES.MD</h1>
+                <div class="inf-accent"></div>
+                <p class="inf-subtitle">Încălțăminte de calitate pentru toți, la prețuri accesibile cu livrare rapidă în toată Moldova.</p>
+            </div>
+
+            <!-- Statistici animate -->
+            <div class="inf-stats">
+                <div class="inf-stat">
+                    <div class="inf-stat-num" id="stat-modele">21+</div>
+                    <div class="inf-stat-label">MODELE</div>
+                </div>
+                <div class="inf-stat">
+                    <div class="inf-stat-num" id="stat-branduri">10+</div>
+                    <div class="inf-stat-label">BRANDURI</div>
+                </div>
+                <div class="inf-stat">
+                    <div class="inf-stat-num" id="stat-clienti">500+</div>
+                    <div class="inf-stat-label">CLIENȚI MULȚUMIȚI</div>
+                </div>
+            </div>
+
+            <!-- Avantaje -->
+            <div class="inf-features">
+                <div class="inf-feature">
+                    <div class="inf-icon"><i class="fas fa-truck"></i></div>
+                    <div>
+                        <p class="inf-feature-title">Livrare rapidă</p>
+                        <p class="inf-feature-desc">Comanda ta ajunge în 1-2 zile lucrătoare oriunde în Moldova.</p>
                     </div>
-                    <div class="dark-box">
-                        <div class="dark-box-label">BRANDURI</div>
-                        <div class="dark-box-val">Nike, Adidas & more</div>
+                </div>
+                <div class="inf-feature">
+                    <div class="inf-icon"><i class="fas fa-check"></i></div>
+                    <div>
+                        <p class="inf-feature-title">Calitate garantată</p>
+                        <p class="inf-feature-desc">Fiecare pereche este verificată înainte de expediere.</p>
                     </div>
-                    <div class="dark-box">
-                        <div class="dark-box-label">LIVRARE</div>
-                        <div class="dark-box-val">Rapidă & sigură</div>
+                </div>
+                <div class="inf-feature">
+                    <div class="inf-icon"><i class="fas fa-credit-card"></i></div>
+                    <div>
+                        <p class="inf-feature-title">Plată sigură</p>
+                        <p class="inf-feature-desc">Achită online sau la livrare, cum îți convine ție.</p>
+                    </div>
+                </div>
+                <div class="inf-feature">
+                    <div class="inf-icon"><i class="fas fa-undo"></i></div>
+                    <div>
+                        <p class="inf-feature-title">Retur facil</p>
+                        <p class="inf-feature-desc">Nu ți se potrivesc? Returnează gratuit în 14 zile.</p>
                     </div>
                 </div>
             </div>
+
+            <!-- Branduri -->
+            <div class="inf-brands">
+                <p class="inf-brands-title">Branduri disponibile</p>
+                <div class="inf-brands-list">
+                    <span class="inf-brand-pill">Nike</span>
+                    <span class="inf-brand-pill">Adidas</span>
+                    <span class="inf-brand-pill">Puma</span>
+                    <span class="inf-brand-pill">Reebok</span>
+                    <span class="inf-brand-pill">Converse</span>
+                    <span class="inf-brand-pill">Vans</span>
+                    <span class="inf-brand-pill">Jordan</span>
+                    <span class="inf-brand-pill">New Balance</span>
+                    <span class="inf-brand-pill">Hoka</span>
+                    <span class="inf-brand-pill">On Cloud</span>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="inf-cta">
+                <p>Găsește perechea perfectă pentru tine chiar acum</p>
+                <button onclick="window.location.href='index.html'">
+                    <i class="fas fa-shoe-prints"></i> Vezi toate produsele
+                </button>
+            </div>
+
         </section>
     </main>
+
     <footer>
-        <p>&copy; 2025 Magazin de Încălțăminte</p>
+        <p>© 2025 Magazin de Încălțăminte</p>
     </footer>
+
     <script src="js/theme.js"></script>
-</body>
-</html>
+    <script>
+        function animateCounter(id, target, suffix) {
+            const el = document.getElementById(id);
+            let current = 0;
+            const step = Math.ceil(target / 40);
+            const timer = setInterval(() => {
+                current = Math.min(current + step, target);
+                el.textContent = current + (suffix || '');
+                if (current >= target) clearInterval(timer);
+            }, 40);
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            animateCounter('stat-modele', 21, '+');
+            animateCounter('stat-branduri', 10, '+');
+            animateCounter('stat-clienti', 500, '+');
+        });
+    </script>
+
+
+</body></html>

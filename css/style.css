@@ -153,7 +153,7 @@ footer {
 }
 
 .titlu-header {
-    background-image: url('Magazin de ÄÂĂÂĂĹĄĂÂncĂÂĂÂÄÂĂÂlÄÂĂÂÄÂĂÂĂÂĂÂÄÂĂÂminte/img/fundal-titlu.jpg');
+    background-image: url('Magazin de ĂÂĂÂÄÂĂÂÄÂÄšÄÄÂĂÂncÄÂĂÂÄÂĂÂĂÂĂÂÄÂĂÂlĂÂĂÂÄÂĂÂĂÂĂÂÄÂĂÂÄÂĂÂÄÂĂÂĂÂĂÂÄÂĂÂminte/img/fundal-titlu.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -616,3 +616,212 @@ main {
     color: #ffffff;
 }
 /* ============================================= */
+/* ===== PAGINA INFORMATII - NOU DESIGN ===== */
+.inf-page {
+    max-width: 760px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.inf-hero {
+    text-align: center;
+    padding: 2.5rem 1.5rem 2rem;
+    border: 1px solid var(--produs-border);
+    border-radius: 14px;
+    background-color: var(--produs-bg);
+}
+
+.inf-badge {
+    display: inline-block;
+    background-color: #d4f5dc;
+    color: #1a6b2e;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 1.5px;
+    margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .inf-badge {
+    background-color: rgba(52, 199, 89, 0.15);
+    color: #34c759;
+}
+
+.inf-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    letter-spacing: 4px;
+    margin: 0 0 0.5rem;
+}
+
+.inf-accent {
+    display: inline-block;
+    width: 36px;
+    height: 3px;
+    background: #34c759;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+}
+
+.inf-subtitle {
+    font-size: 1rem;
+    color: #888;
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+/* Statistici */
+.inf-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.inf-stat {
+    background-color: var(--produs-bg);
+    border: 1px solid var(--produs-border);
+    border-radius: 12px;
+    padding: 1.3rem 1rem;
+    text-align: center;
+}
+
+.inf-stat-num {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #34c759;
+    line-height: 1;
+}
+
+.inf-stat-label {
+    font-size: 11px;
+    color: #888;
+    margin-top: 6px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Avantaje */
+.inf-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.inf-feature {
+    background-color: var(--produs-bg);
+    border: 1px solid var(--produs-border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+}
+
+.inf-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background-color: #d4f5dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+    color: #1a6b2e;
+}
+
+[data-theme="dark"] .inf-icon {
+    background-color: rgba(52, 199, 89, 0.15);
+    color: #34c759;
+}
+
+.inf-feature-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-color);
+    margin: 0 0 4px;
+}
+
+.inf-feature-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Branduri */
+.inf-brands {
+    background-color: var(--produs-bg);
+    border: 1px solid var(--produs-border);
+    border-radius: 12px;
+    padding: 1.3rem 1.5rem;
+}
+
+.inf-brands-title {
+    font-size: 12px;
+    color: #888;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0 0 12px;
+    text-transform: uppercase;
+}
+
+.inf-brands-list {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.inf-brand-pill {
+    background-color: var(--bg-color);
+    border: 1px solid var(--produs-border);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* CTA */
+.inf-cta {
+    text-align: center;
+    padding: 1.8rem;
+    background-color: var(--produs-bg);
+    border: 1px solid var(--produs-border);
+    border-radius: 12px;
+}
+
+.inf-cta p {
+    font-size: 14px;
+    color: #888;
+    margin: 0 0 14px;
+}
+
+.inf-cta button {
+    background-color: #34c759;
+    color: white;
+    border: none;
+    padding: 11px 30px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.inf-cta button:hover {
+    background-color: #28a745;
+    transform: scale(1.04);
+}
+
+@media (max-width: 600px) {
+    .inf-stats { grid-template-columns: 1fr 1fr; }
+    .inf-features { grid-template-columns: 1fr; }
+}
+/* ========================================= */
